@@ -4,7 +4,7 @@ const app = express();
 const path = require('path');
 app.use(cors());
 app.get('/api/getUser', (req,res)=>{
-    const user = 'Evgeni';
+    const user = 'Or';
     res.json(user);
 })
 
