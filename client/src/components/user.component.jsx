@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 function User() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState('')
 
   const getUser = async () =>{
     const data = await axios.get('api/getUser')
