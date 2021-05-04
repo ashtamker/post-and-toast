@@ -12,12 +12,12 @@ app.use('/posts', postRoutes);
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
-const CONNECTION_URL = 'mongodb+srv://or_ashi9:or123456@cluster0.2afuj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const CONNECTION_URL = 'mongodb+srv://or_ashi9:or123456@cluster0.2afuj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const port = process.env.port || 8000;
 
 mongoose.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => app.listen(port, () => console.log(`Server started on port ${port}`)))
-.catch((err) => console.log(err.message))
+.catch((error) => console.log(error.message));
 
 
 
@@ -31,6 +31,8 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
   }
+
+  
 // app.listen(process.env.PORT || port , () =>{
 //     console.log(`Server started on port ${port}`)
 // });

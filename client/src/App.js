@@ -12,6 +12,7 @@ function App() {
       {/* <BrowserRouter>
         <Route exact path='/' component={Form} />
       </BrowserRouter> */}
+      
       <Form />
       <Posts />
     </div>
