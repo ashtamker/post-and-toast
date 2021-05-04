@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
-function Form () {
+const Form = () => {
     return (
         <div>
             welcome

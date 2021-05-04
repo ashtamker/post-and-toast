@@ -3,15 +3,17 @@ import './App.css';
 import { Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import Form from './components/Form/Form';
+import Posts from './components/Posts/Posts';
 
 function App() {
 
   return (
     <div>
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Route exact path='/' component={Form} />
-      </BrowserRouter>
-
+      </BrowserRouter> */}
+      <Form />
+      <Posts />
     </div>
   );
 }
