@@ -13,8 +13,8 @@ const getPosts = async (req, res) => {
 }
 
  const createPost = async (req, res) => {
-    const { title, message, selectedFile, creator, tags } = req.body;
-    const newPost = new PostModel({ title, message, selectedFile, creator, tags });
+    const { title, message, creator, tags, selectedFile } = req.body;
+    const newPost = new PostModel({ title, message, creator, tags, selectedFile });
     try {
         await newPost.save();
         res.status(200).json(newPost);
