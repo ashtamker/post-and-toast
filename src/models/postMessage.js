@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const postSchema = mongoose.Schema({
-    title: {type: String, required: true},
-    message: {type: String},
-    creator: {type: String, required: true},
+    title: {String},
+    message: {String},
+    creator: {String},
     tags: [String],
     selectedFile: String,
     likeCount: {
