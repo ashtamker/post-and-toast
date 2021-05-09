@@ -1,17 +1,17 @@
 const PostModel = require('../models/postMessage');
 
 
-exports.getPosts = async (req, res) => {
+const getPosts = async (req, res) => {
     try {
         const postModel = await PostModel.find();
-        res.status(200).json(postModel)
+        res.status(200).json(postModel);
     } catch (error) {
         res.status(404).json({message: error.message});
     }
 
 }
 
-exports.createPost = async (req, res) => {
+ const createPost = async (req, res) => {
     const post = req.body;
     const newPost = new PostModel(post)
     try {
@@ -20,4 +20,10 @@ exports.createPost = async (req, res) => {
     } catch (error) {
         res.status(404).json({message: error.message});
     }
+}
+
+
+module.exports = {
+    getPosts,
+    createPost,
 }
