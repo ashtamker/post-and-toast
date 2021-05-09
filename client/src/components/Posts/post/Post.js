@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import useStyles from './postStyle';
 
 const Post = ({post}) => {
+    const dispatch = useDispatch(); 
     const classes = useStyles(); 
     
     return (
