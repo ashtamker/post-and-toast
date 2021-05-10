@@ -16,7 +16,7 @@ const getPosts = async (req, res) => {
  const createPost = async (req, res) => {
     // const { title, message, creator, tags, selectedFile } = req.body;
     // const newPost = new PostModel({ title, message, creator, tags, selectedFile })
-    const post = req.body;
+    const {post} = req.body;
     const newPost = new PostModel(post);
 
     try {
@@ -36,9 +36,18 @@ const updatePost = async (req, res) => {
     res.json(updatePost);
 }
 
+const deletePost = async (req, res) => {
+    const {id} = req.params;
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("No ID that match to a post");
+
+    await PostModel.findByIdAndDelete(id);
+    console.log('Delete');
+    res.json({message: 'Post deleted'});
+}
 
 module.exports = {
     getPosts,
     createPost,
     updatePost,
+    deletePost,
 }
