@@ -3,10 +3,9 @@ import './loading.css';
 
 const Loading = () => {
 
-   
 
 return (    
-    <div className="container">
+    <div className="container-beer">
     <div className="mug">
      <div className="beer"></div>
     </div>
