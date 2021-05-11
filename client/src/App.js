@@ -6,9 +6,10 @@ import { useDispatch } from 'react-redux';
 import { getPosts } from './actions/posts';
 import Form from './components/Form/Form';
 import Posts from './components/Posts/Posts';
-import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
+import { Container, Grow, Grid } from '@material-ui/core';
 import Navbar from './components/Navbar/Navbar';
-import './app.css';
+import Loading from './components/Loading/Loading';
+
 
 
 
@@ -31,17 +32,12 @@ useEffect(() =>  {
 }, [currentId ,dispatch]);
 
   return (
+
+    <div>
+      {loading==true?
+      <Loading />:
+
     <Container maxWidth="lg">
-    
-    {/* <div className="container">
-      <div className="mug">
-       <div className="beer"></div>
-      </div>
-      <div className="bubble"></div>
-      <div className="small-bubbles"></div>
-      <div className="drip"></div>
-    </div>     */}
-  
         <Navbar />
         <Grow in>
           <Container>
@@ -58,6 +54,8 @@ useEffect(() =>  {
    
    
      </Container>
+      }
+     </div>
     );
 }
 
