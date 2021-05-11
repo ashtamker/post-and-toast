@@ -14,10 +14,9 @@ const Form = ({currentId, setCurrentId}) => {
     const classes = useStyles();
     
     useEffect(() => {
-        if(post) 
-        setPostData(post)
+        if(post) setPostData(post)
         console.log(post)
-    }, [post])
+    }, [post]);
     
     const handleSubmit = (e) => {
         e.preventDefault();
