@@ -17,6 +17,9 @@ const Auth = () => {
 
     };
 
+    const toggleMode = () => {
+
+    }
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword ); 
     
     return (
@@ -42,6 +45,14 @@ const Auth = () => {
                     <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                         {isSignup ? 'Sign Up' : 'Sign In'}
                     </Button>
+                    <Grid container justify="flex-end">
+                        <Grid item>
+                            <Button onClick={toggleMode}>
+                                { isSignup ? 'Have account? Sign In' : 'New here? register now'}
+                            </Button>
+                        </Grid>
+
+                    </Grid>
                 </form>
             </Paper>
         </Container>
