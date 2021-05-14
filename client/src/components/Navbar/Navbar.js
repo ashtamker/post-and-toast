@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react';
 import { AppBar, Typography, Toolbar, Avatar, Button} from '@material-ui/core';
 import useStyles from './navbarStyle';
 import homeImg from '../../img/home.jpg';
-import {Link, useHistory} from 'react-router-dom';
+import {Link, useHistory, useLocation} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 
@@ -12,7 +12,7 @@ const Navbar = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const dispatch = useDispatch();
     const history = useHistory();
-
+    const location = useLocation();
 
     const logout = () => {
         dispatch({type: 'LOGOUT'});
@@ -24,7 +24,7 @@ const Navbar = () => {
     useEffect(() => {
         const token = user?.token;
         setUser(JSON.parse(localStorage.getItem('profile')));  
-    }, [])
+    }, [location])
 
 
 
