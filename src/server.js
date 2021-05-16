@@ -2,17 +2,24 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const postRoutes = require('./routes/posts.route'); 
+const postRoutes = require('./routes/posts.route.js');
+const userRoutes = require('./routes/user.route.js'); 
 const dotenv = require('dotenv');
 
 const app = express();
 dotenv.config();
 const path = require('path');
-app.use(cors());
 
-app.use('/posts', postRoutes);
+
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+
+app.use(cors());
+app.use('/posts', postRoutes);
+app.use('/user', userRoutes);
+
+
+
 
 const CONNECTION_URL = 'mongodb+srv://or_ashi9:or123456@cluster0.2afuj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 8000;
