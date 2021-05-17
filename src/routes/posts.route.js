@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const postController = require('../controllers/posts.controllers');
-import auth from '../middleware/auth.js';
+const auth = require('../middleware/auth.js');
 
 
 router.get('/', postController.getPosts);
