@@ -47,9 +47,17 @@ const deletePost = async (req, res) => {
 
 const likePost = async (req, res) => {
     const {id} = req.params;
+    if(!req.userId) return res.json({message: "user not verified"})
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("No ID that match to a post");
     const post = await PostModel.findById(id);
-    const updatedPost = await PostModel.findByIdAndUpdate(id, {likeCount: post.likeCount + 1}, {new:" true"}); 
+    const index = post.likes.findIndex((id) => id === String(req.userId));
+    if(index === -1) {
+        post.likes.push(req.userId);
+    }
+    else {
+        post.likes = post.likes.filter((id) => id !== String(req.userId));
+    }
+    const updatedPost = await PostModel.findByIdAndUpdate(id, post, {new: true}); 
     res.json(updatedPost);
 }
 
