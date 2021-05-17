@@ -1,6 +1,6 @@
 import * as api from '../api';
 
-export const signin = (FormData, history) => async (dispatch) {
+export const signin = (FormData, history) => async (dispatch) => {
     try {
         history.push('/')  
     } catch (error) {
@@ -8,7 +8,7 @@ export const signin = (FormData, history) => async (dispatch) {
     }
 }; 
 
-export const signup = (FormData, history) => async (dispatch) {
+export const signup = (FormData, history) => async (dispatch) => {
     try {
         history.push('/')
     } catch (error) {
