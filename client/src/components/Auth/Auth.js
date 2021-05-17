@@ -37,7 +37,7 @@ const Auth = () => {
 
     const toggleMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
-        handleShowPassword(false);
+        setShowPassword(false);
     }
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword ); 
 
