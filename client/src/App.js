@@ -36,7 +36,7 @@ useEffect(() => {
     
     
     <div>
-    {loading==true?
+    {loading === true?
       <Loading />: 
       
       <BrowserRouter>

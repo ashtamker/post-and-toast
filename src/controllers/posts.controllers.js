@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const PostModel = require('../models/postMessage');
 
 
+
 const getPosts = async (req, res) => {
-    
     try {
         const postModel = await PostModel.find();
         res.status(200).json(postModel);
@@ -14,25 +14,24 @@ const getPosts = async (req, res) => {
 }
 
  const createPost = async (req, res) => {
-    // const { title, message, creator, tags, selectedFile } = req.body;
-    // const newPost = new PostModel({ title, message, creator, tags, selectedFile })
     const post = req.body;
     const newPost = new PostModel({...post, creator: req.userId, createdAt: new Data().toISOString()});
 
     try {
         await newPost.save();
-        res.status(201).json(newPost);
+        res.status(201).json(newPost );
     } catch (error) {
         res.status(404).json({message: error.message});
     }
 }
 
 const updatePost = async (req, res) => {
-    const {id : _id} = req.params;
-    const post = req.body;
-    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send("No ID that match to a post");
+    const {id} = req.params;
+    const { title, message, creator, selectedFile, tags} = req.body;
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("No ID that match to a post");
     
-   const updatePost = PostModel.findByIdAndUpdate(_id, {...post, _id}, {new: true});
+   const updatePost = { creator, title, message, selectedFile, tags, _id: id}
+   await PostModel.findByIdAndUpdate(id, updatePost, {new: true});
     res.json(updatePost);
 }
 
@@ -41,14 +40,15 @@ const deletePost = async (req, res) => {
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("No ID that match to a post");
 
     await PostModel.findByIdAndDelete(id);
-    console.log('Delete');
     res.json({message: 'Post deleted'});
 }
 
 const likePost = async (req, res) => {
     const {id} = req.params;
     if(!req.userId) return res.json({message: "user not verified"})
+
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("No ID that match to a post");
+
     const post = await PostModel.findById(id);
     const index = post.likes.findIndex((id) => id === String(req.userId));
     if(index === -1) {
@@ -58,7 +58,7 @@ const likePost = async (req, res) => {
         post.likes = post.likes.filter((id) => id !== String(req.userId));
     }
     const updatedPost = await PostModel.findByIdAndUpdate(id, post, {new: true}); 
-    res.json(updatedPost);
+    res.status(200).json(updatedPost);
 }
 
 
@@ -69,3 +69,4 @@ module.exports = {
     deletePost,
     likePost,
 }
+
