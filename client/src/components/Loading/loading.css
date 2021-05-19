@@ -1,4 +1,4 @@
-/* * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -26,14 +26,15 @@
     border-radius: 100%;
   }
   
-  body {
+  .container-main {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     overflow: hidden;
-    background: #7dcfb6;
+    background: #ee5522;
   }
+
   
   .mug {
     position: relative;
@@ -61,7 +62,7 @@
     height: 13vmin;
     top: 8vmin;
     left: 13vmin;
-    background: #7dcfb6;
+    background: #ee5522;
     border-radius: 19%;
   }
   
@@ -174,4 +175,4 @@
     100% {
       height: 25vmin;
     }
-  } */
+  }

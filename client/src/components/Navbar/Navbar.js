@@ -4,10 +4,10 @@ import useStyles from './navbarStyle';
 import homeImg from '../../img/home.jpg';
 import {Link, useHistory, useLocation} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import decode from 'jwt-decode';
 
 
 const Navbar = () => {
-
     const classes = useStyles();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const dispatch = useDispatch();
@@ -16,13 +16,18 @@ const Navbar = () => {
 
     const logout = () => {
         dispatch({type: 'LOGOUT'});
-        history.push('/');
+        history.push('/auth');
 
         setUser(null);
     }
 
     useEffect(() => {
         const token = user?.token;
+        if(token) {
+            const decodedToken = decode(token);
+            if(decodedToken.exp * 1000 < new Date().getTime()) logout();
+        }
+
         setUser(JSON.parse(localStorage.getItem('profile')));  
     }, [location])
 

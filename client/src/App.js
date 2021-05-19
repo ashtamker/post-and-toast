@@ -15,50 +15,42 @@ const [loading, setLoading] = useState(true);
 const classes = useStyles();
 
 
-// useEffect(() => {
-//   setTimeout(() => {
-//     setLoading(false)
-//   }, 5000)
-// },[])
+useEffect(() => {
+  setTimeout(() => {
+    setLoading(false)
+  }, 5000)
+},[])
 
 
   return (
-    <BrowserRouter>
-      <Container maxWidth="lg">
-          <Navbar />
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/auth" exact component={Auth} />
-          </Switch>
-      </Container>
-    </BrowserRouter>
+    // <BrowserRouter>
+    //   <Container maxWidth="lg">
+    //       <Navbar />
+    //       <Switch>
+    //         <Route path="/" exact component={Home} />
+    //         <Route path="/auth" exact component={Auth} />
+    //       </Switch>
+    //   </Container>
+    // </BrowserRouter>
     //////////////////////
     
     
-//     <div>
-//     {loading==true?
-//       <Loading />: 
-
-//     <Container maxWidth="lg">    
-//         <Navbar />
-//         <Grow in>
-//           <Container>
-//             <Grid className={classes.mainContainer} container justify="space-between" alignItems="stretch" spacing={3}>
-//               <Grid item xs={12} sm={7}>
-//                 <Posts setCurrentId={setCurrentId}/>
-//               </Grid>
-//               <Grid item xs={12} sm={4}>
-//                 <Form currentId={currentId} setCurrentId={setCurrentId}/>
-//               </Grid>
-//             </Grid>
-//           </Container>
-//         </Grow>
-        
+    <div>
+    {loading==true?
+      <Loading />: 
       
-      
-//      </Container>
-// }
-//       </div>
+      <BrowserRouter>
+          <Container maxWidth="lg">
+              <Navbar />
+              <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/auth" exact component={Auth} />
+              </Switch>
+          </Container>
+      </BrowserRouter>
+   
+}
+      </div>
     );
 }
 

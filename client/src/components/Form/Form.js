@@ -26,14 +26,14 @@ const Form = ({currentId, setCurrentId}) => {
             clear();
         }
         else {
-            dispatch(updatePost(currentId,{ ...postData, name: user?.result?.name }));
+            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
             clear();  
         } 
         console.log(postData);
     }
 
     const clear = () => {
-        setCurrentId(null);
+        setCurrentId(0);
         setPostData({ title: '', message: '', tags: '', selectedFile: ''});
     }
 
@@ -64,7 +64,7 @@ const Form = ({currentId, setCurrentId}) => {
             
         </form>
         </Paper>
-    )
-}
+    );
+};
 
 export default Form;

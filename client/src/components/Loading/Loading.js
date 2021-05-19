@@ -4,7 +4,8 @@ import './loading.css';
 const Loading = () => {
 
 
-return (    
+return (  
+  <div className="container-main">  
     <div className="container-beer">
     <div className="mug">
      <div className="beer"></div>
@@ -12,6 +13,7 @@ return (
     <div className="bubble"></div>
     <div className="small-bubbles"></div>
     <div className="drip"></div>
+    </div>
   </div>    
 )
 }

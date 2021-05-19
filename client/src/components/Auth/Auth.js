@@ -36,10 +36,11 @@ const Auth = () => {
     };
 
     const toggleMode = () => {
+        setFormData(initialState);
         setIsSignup((prevIsSignup) => !prevIsSignup);
         setShowPassword(false);
     }
-    const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword ); 
+    const handleShowPassword = () => setShowPassword(!showPassword); 
 
     const googleSuccess = async (res) => {
         const result = res?.profileObj;
@@ -70,12 +71,12 @@ const Auth = () => {
                         {
                             isSignup && (
                             <>
-                                <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus part />
-                                <Input name="lastName" label="Last Name" handleChange={handleChange} part />
+                                <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
+                                <Input name="lastName" label="Last Name" handleChange={handleChange} half />
                             </>
                             )}
                             <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-                            <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
+                            <Input name="password" label="Password"  handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
                             {isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />}
                     </Grid>
                     <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
