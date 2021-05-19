@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/userModel.js');
+const secret = 'postcode';
 
 const signin = async (req, res) => {
     const {email, password} = req.body;
@@ -13,7 +14,7 @@ const signin = async (req, res) => {
         const checkPassword = await bcrypt.compare(password, searchUser.password);
         if(!checkPassword) return res.status(400).json({massage: "wrong input"})
 
-        const token = jwt.sign({email: searchUser.email, id:searchUser._id}, 'post-code', {expiresIn: "1h"});
+        const token = jwt.sign({email: searchUser.email, id:searchUser._id}, secret, {expiresIn: "1h"});
         res.status(200).json({result: searchUser, token});
     } catch (error) {
        res.status(500).json({massage: "Login failed"}); 
