@@ -9,7 +9,7 @@ export const getPosts = () => async (dispatch) => {
         console.log(error);
     }
     
-}
+};
 
 export const createPost = (post) => async (dispatch) => {
     try {
@@ -19,7 +19,7 @@ export const createPost = (post) => async (dispatch) => {
         console.log(error);
     }
 
-}
+};
 
 export const updatePost = (id, post) => async (dispatch) => {
     try {
@@ -29,7 +29,7 @@ export const updatePost = (id, post) => async (dispatch) => {
         console.log(error);
     }
 
-}
+};
 
 export const deletePost = (id) => async (dispatch) => {
     try {
@@ -39,7 +39,7 @@ export const deletePost = (id) => async (dispatch) => {
         console.log(error);
     }
 
-}
+};
 
 export const likePost = (id) => async (dispatch) => {
     const user = JSON.parse(localStorage.getItem('profile'));
@@ -51,4 +51,4 @@ export const likePost = (id) => async (dispatch) => {
         console.log(error);
     }
 
-}
+};

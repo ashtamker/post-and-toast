@@ -2,13 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const postRoutes = require('./routes/posts.route.js');
-const userRoutes = require('./routes/user.route.js'); 
+const postRoutes = require('./routes/posts.route');
+const userRoutes = require('./routes/user.route'); 
 const dotenv = require('dotenv');
 
 const app = express();
 dotenv.config();
-const path = require('path');
+// const path = require('path');
 
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
@@ -31,16 +31,16 @@ mongoose.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: tru
 
 mongoose.set('useFindAndModify', false);
 
-// if (process.env.NODE_ENV === 'production') {
-//     // Exprees will serve up production assets
-//     app.use(express.static('client/build'));
+if (process.env.NODE_ENV === 'production') {
+    // Exprees will serve up production assets
+    app.use(express.static('client/build'));
   
-//     // Express serve up index.html file if it doesn't recognize route
-//     const path = require('path');
-//     app.get('*', (req, res) => {
-//       res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-//     });
-//   }
+    // Express serve up index.html file if it doesn't recognize route
+    const path = require('path');
+    app.get('/*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+  }
 
   
 // app.listen(process.env.PORT || port , () =>{

@@ -12,7 +12,7 @@ import Auth from './components/Auth/Auth';
 function App() {
 
 const [loading, setLoading] = useState(true);  
-const classes = useStyles();
+
 
 
 useEffect(() => {
