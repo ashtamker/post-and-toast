@@ -17,7 +17,7 @@ const getPosts = async (req, res) => {
     // const { title, message, creator, tags, selectedFile } = req.body;
     // const newPost = new PostModel({ title, message, creator, tags, selectedFile })
     const post = req.body;
-    const newPost = new PostModel(post);
+    const newPost = new PostModel({...post, creator: req.userId, createdAt: new Data().toISOString()});
 
     try {
         await newPost.save();
