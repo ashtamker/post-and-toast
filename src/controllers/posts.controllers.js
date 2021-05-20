@@ -13,6 +13,18 @@ const getPosts = async (req, res) => {
 
 }
 
+    const getSearchPosts = async (req, res) => {
+        const {searchQuery} = req.query;
+
+        try {
+            const title = new RegExp(searchQuery, "i"); 
+            const posts = await PostModel.find({$or: [{title}, {tags: {$in: tags.split(',')}}]});
+            res.json({data: posts});
+        } catch (error) {
+            res.status(404).json({message: error.message});
+        }
+    }
+
  const createPost = async (req, res) => {
     const post = req.body;
     const newPost = new PostModel({...post, creator: req.userId, createdAt: new Date().toISOString() });
@@ -68,5 +80,6 @@ module.exports = {
     updatePost,
     deletePost,
     likePost,
+    getSearchPosts,
 }
 

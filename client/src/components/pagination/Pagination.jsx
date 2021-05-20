@@ -11,7 +11,7 @@ const Pages = () => {
             classes={{ul:classes.ul}}
             count={5}
             page={1}
-            variant="outline"
+            variant="outlined"
             color="primary"
             renderItem={(item) => (
         <PaginationItem {...item} component={Link} to={`/post?page=${1}`} />
