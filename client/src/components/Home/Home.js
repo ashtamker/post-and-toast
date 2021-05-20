@@ -27,9 +27,9 @@ const Home = () => {
     const [search,setSearch] = useState('');
     const [tags,setTags] = useState([]);
 
-    useEffect(() =>  {
-        dispatch(getPosts());
-      }, [currentId ,dispatch]);
+    // useEffect(() =>  {
+    //     dispatch(getPosts());
+    //   }, [currentId ,dispatch]);
     
     const searchPost = () => {
       if(search.trim()) {
@@ -65,7 +65,7 @@ const Home = () => {
               </AppBar>
               <Form currentId={currentId} setCurrentId={setCurrentId}/>
               <Paper elevation={6}>
-                <Pages />
+                <Pages page={page}/>
               </Paper>
             </Grid>
           </Grid>

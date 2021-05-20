@@ -4,9 +4,14 @@ const PostModel = require('../models/postMessage');
 
 
 const getPosts = async (req, res) => {
+    const {page} = req.query;
     try {
-        const postModel = await PostModel.find();
-        res.status(200).json(postModel);
+        const LIMIT = 8;
+        const startPoint = (Number(page) - 1) * LIMIT;
+        const total = await PostModel.countDocuments({});
+
+        const posts = await PostModel.find().sort({_id: -1}).limit(LIMIT).skip(startPoint);
+        res.status(200).json({data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT) });
     } catch (error) {
         res.status(404).json({message: error.message});
     }
