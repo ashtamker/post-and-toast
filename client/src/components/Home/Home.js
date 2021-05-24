@@ -64,7 +64,7 @@ const Home = () => {
                 {/* <ChipInput style={{ margin:'10px 0'}} value={tags} onAdd={handleAdd} onDelete={handleDelete} label="Search Tags" variant="standard"/> */}
               </AppBar>
               <Form currentId={currentId} setCurrentId={setCurrentId}/>
-              <Paper elevation={6}>
+              <Paper elevation={6} className={classes.pagination}>
                 <Pages page={page}/>
               </Paper>
             </Grid>

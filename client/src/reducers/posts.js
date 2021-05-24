@@ -21,6 +21,8 @@ export default (state = {isLoading: true, posts: []}, action) => {
             return {...state, posts: state.posts.map((post) => post._id === action.payload._id ? action.payload : post)} 
         case "FETCH_BY_SEARCH":
             return {...state, posts: action.payload,}
+            case "FETCH_POST":
+                return {...state, post: action.payload,}    
         default:
             return state;
 

@@ -11,6 +11,7 @@ URL.interceptors.request.use((req) => {
 });
 
 export const fetchPosts = (page) => URL.get(`/posts?page=${page}`);
+export const fetchPost = (id) => URL.get(`/posts/${id}`);
 export const fetchPostsBySearch = (searchQuery) => URL.get(`/posts/search?searchQuery=${searchQuery.search || 'none'}`)
 export const createPost = (newPost) => URL.post('/posts', newPost);
 export const updatePost = (id, updatedPost) => URL.patch(`/posts/${id}`, updatedPost);

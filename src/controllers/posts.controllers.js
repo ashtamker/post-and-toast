@@ -18,7 +18,19 @@ const getPosts = async (req, res) => {
 
 }
 
-    const getSearchPosts = async (req, res) => {
+const getPost = async (req, res) => { 
+    const { id } = req.params;
+
+    try {
+        const post = await PostModel.findById(id);
+        
+        res.status(200).json(post);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
+const getSearchPosts = async (req, res) => {
         const {searchQuery} = req.query;
 
         try {
@@ -30,7 +42,7 @@ const getPosts = async (req, res) => {
         }
     }
 
- const createPost = async (req, res) => {
+const createPost = async (req, res) => {
     const post = req.body;
     const newPost = new PostModel({...post, creator: req.userId, createdAt: new Date().toISOString() });
 
@@ -86,5 +98,6 @@ module.exports = {
     deletePost,
     likePost,
     getSearchPosts,
+    getPost,
 }
 
