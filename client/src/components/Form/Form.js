@@ -9,7 +9,7 @@ import { createPost, updatePost } from '../../actions/posts';
 
 const Form = ({currentId, setCurrentId}) => {
     const [postData, setPostData] = useState({title: '', message: '', tags: '', selectedFile: ''});
-    const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
+    const post = useSelector((state) => (currentId ? state.posts.posts.find((message) => message._id === currentId) : null));
     const dispatch = useDispatch();
     const classes = useStyles();
     const user = JSON.parse(localStorage.getItem('profile'));
@@ -34,7 +34,7 @@ const Form = ({currentId, setCurrentId}) => {
 
     const clear = () => {
         setCurrentId(0);
-        setPostData({ title: '', message: '', tags: '', selectedFile: ''});
+        setPostData({ title: '', message: '', tags: [], selectedFile: ''});
     }
 
     if(!user?.result?.name) {

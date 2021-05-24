@@ -7,7 +7,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import useStyles from './postStyle';
-import { deletePost, likePost } from '../../../actions/posts';
+import { deletePost, likePost, getPost } from '../../../actions/posts';
 import { useHistory} from 'react-router-dom';
 
 const Post = ({post, setCurrentId}) => {

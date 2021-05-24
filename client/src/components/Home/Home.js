@@ -32,9 +32,9 @@ const Home = () => {
     //   }, [currentId ,dispatch]);
     
     const searchPost = () => {
-      if(search.trim()) {
-        dispatch(getSearchPosts({search}));
-        history.push(`/posts/search?searchQuery=${search || 'none'}`)
+      if(search.trim() || tags) {
+        dispatch(getSearchPosts({search, tags: tags.join(',')}));
+        history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
       }
       else {
         history.push('/');
@@ -64,9 +64,12 @@ const Home = () => {
                 {/* <ChipInput style={{ margin:'10px 0'}} value={tags} onAdd={handleAdd} onDelete={handleDelete} label="Search Tags" variant="standard"/> */}
               </AppBar>
               <Form currentId={currentId} setCurrentId={setCurrentId}/>
-              <Paper elevation={6} className={classes.pagination}>
+              {(!searchQuery && !tags.length) && (
+                <Paper elevation={6} className={classes.pagination}>
                 <Pages page={page}/>
               </Paper>
+              )}
+              
             </Grid>
           </Grid>
         </Container>
